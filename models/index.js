@@ -1,5 +1,5 @@
 import dbConfig from "../src/common/config/db.config";
-import { Sequelize } from "sequelize";
+import Sequelize from "sequelize";
 
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
     host: dbConfig.HOST,
@@ -18,5 +18,13 @@ const db = {};
 
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
+
+// Models
+db.user = require("./user")(sequelize, Sequelize);
+db.post = require("./post")(sequelize, Sequelize);
+
+// Relations and Associations
+db.user.hasMany(db.post, { foreignKey: "userId", onDelete: "CASCADE" });
+db.post.belongsTo(db.user, { foreingKey: "userId" });
 
 export default db;

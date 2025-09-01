@@ -5,6 +5,7 @@ import routes from "./routes/index";
 import session from "express-session";
 import passport from "passport";
 import db from "./models/index";
+import "./src/common/config/passport";
 const app = express();
 
 const PORT = process.env.PORT || 9001;
