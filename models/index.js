@@ -22,9 +22,26 @@ db.sequelize = sequelize;
 // Models
 db.user = require("./user")(sequelize, Sequelize);
 db.post = require("./post")(sequelize, Sequelize);
+db.postLike = require("./postLikes")(sequelize, Sequelize);
 
 // Relations and Associations
 db.user.hasMany(db.post, { foreignKey: "userId", onDelete: "CASCADE" });
-db.post.belongsTo(db.user, { foreingKey: "userId" });
+db.post.belongsTo(db.user, { foreignKey: "userId", onDelete: "CASCADE" });
+
+// Post and Likes associations
+db.user.belongsToMany(db.post, {
+    through: db.postLike,
+    as: "likedPosts",
+    foreignKey: "userId",
+    otherKey: "postId",
+    onDelete: "CASCADE",
+});
+db.post.belongsToMany(db.user, {
+    through: db.postLike,
+    as: "likedByUsers",
+    foreignKey: "postId",
+    otherKey: "userId",
+    onDelete: "CASCADE",
+});
 
 export default db;

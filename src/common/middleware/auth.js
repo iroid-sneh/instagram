@@ -1,4 +1,4 @@
-import passport from "../config/passport";
+import passport from "passport";
 
 export default (req, res, next) => {
     passport.authenticate(

@@ -1,7 +1,6 @@
 import argon2 from "argon2";
 import db from "../../models/index";
 const User = db.user;
-import crypto from "crypto";
 import jwt from "jsonwebtoken";
 class authService {
     /**

@@ -10,11 +10,11 @@ module.exports = (sequelize, Sequelize) => {
             allowNull: false,
         },
         content: {
-            type: Sequelize.INTEGER,
+            type: Sequelize.STRING,
             allowNull: false,
         },
         imageUrl: {
-            type: Sequelize.INTEGER,
+            type: Sequelize.STRING,
             allowNull: false,
         },
     });
